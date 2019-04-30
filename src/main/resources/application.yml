@@ -1,0 +1,29 @@
+server:
+    port: 443
+    servlet:
+        context-path: /testHttps
+    ssl:
+        key-store: classpath:tomcat.keystore
+        key-store-type: jks
+        key-alias: tomcat
+        key-store-password: 123456
+        key-store-provider: SUN
+        key-password: 123456
+        enabled: true
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: 123456
+        #&useLegacyDatetimeCode=false&serverTimezone=UTC解决时差
+        url: jdbc:mysql://127.0.0.1:3306/student_crud?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: root
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        hibernate:
+            #ddl-auto: create     惨！慎用。会清空表
+            #ddl-auto:create----每次运行该程序，没有表格会新建表格，表内有数据会清空
+            #ddl-auto:create-drop----每次程序结束的时候会清空表
+            #ddl-auto:update----每次运行程序，没有表格会新建表格，表内有数据不会清空，只会更新
+            #ddl-auto:validate----运行程序会校验数据与数据库的字段类型是否相同，不同会报错
+        show-sql: true
+
